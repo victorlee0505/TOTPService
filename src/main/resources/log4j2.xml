@@ -8,7 +8,7 @@
             <PatternLayout pattern="%d R=%r %-5p [%t] [%marker] %X %c.%M:%L - %m%n" />
         </Console>
 
-        <RollingFile name="DAILY_LOG" fileName="logs/OTPServer.log" filePattern="logs/OTPServer_%d{yyyyMMdd}_%i.log">
+        <RollingFile name="DAILY_LOG" fileName="logs/TOTPService.log" filePattern="logs/TOTPService_%d{yyyyMMdd}_%i.log">
             <PatternLayout>
                 <pattern>%d R=%r %-5p [%t] [%marker] %X %c.%M:%L - %m%n</pattern>
             </PatternLayout>
