@@ -2,49 +2,27 @@ package com.example.security.encryption;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Base64;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Test;
 
-public class EncryptorTest {
-    private static final Logger logger = LogManager.getLogger(EncryptorTest.class);
-    
+public class EncryptionServiceTest {
+    private static final Logger logger = LogManager.getLogger(EncryptionServiceTest.class);
+
     @Test
     public void testEncryption(){
         String expected = "JSFBYH3SI4VPYSU5ROCXJPOT";
 
-        Encryptor encryptor = new Encryptor();
+        EncryptionService es = new EncryptionService();
 
-        String encText = encryptor.encrypt(expected);
+        EncryptionResult encResult = es.encrypt(expected);
 
-        String actual = encryptor.decrypt(encText);
+        String actual = es.decrypt(encResult.getEncryptedText(), encResult.getEncryptionKey());
 
-        logger.info("EncrytedText [{}]", encText);
-        logger.info("EncrytionKey [{}]", encryptor.getKey());
-
-        logger.info("expected [{}] vs actual [{}]", expected, actual);
-        
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void testEncryption2(){
-        String expected = "JSFBYH3SI4VPYSU5ROCXJPOT";
-
-        Encryptor encryptor = new Encryptor();
-
-        String encText = encryptor.encrypt(expected);
-
-        logger.info("encryptor1 ========");
-        logger.info("EncrytedText [{}]", encText);
-        logger.info("EncrytionKey [{}]", encryptor.getKey());
-
-        Encryptor encryptor2 = new Encryptor(encryptor.getKey());
-
-        String actual = encryptor2.decrypt(encText);
-
-        logger.info("encryptor2 ========");
-        logger.info("EncrytionKey [{}]", encryptor2.getKey());
+        logger.info("EncrytedText [{}]", encResult.getEncryptedText());
+        logger.info("EncrytedText [{}]", encResult.getEncryptionKey());
 
         logger.info("expected [{}] vs actual [{}]", expected, actual);
         
@@ -61,6 +39,26 @@ public class EncryptorTest {
         String encText = encryptor.encrypt(expected);
 
         String actual = encryptor.decrypt(encText);
+
+        logger.info("EncrytedText [{}]", encText);
+
+        logger.info("expected [{}] vs actual [{}]", expected, actual);
+        
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testEncryptionWithKey2(){
+        String key = "9RMj6zJ1uRehrRQBac4jHnZbSNPm+Q4dIaaajaqLdDo=";
+        String expected = "JSFBYH3SI4VPYSU5ROCXJPOT";
+
+        Encryptor encryptor = new Encryptor(key);
+
+        String encText = encryptor.encrypt(expected);
+
+        Encryptor encryptor2 = new Encryptor(key);
+
+        String actual = encryptor2.decrypt(encText);
 
         logger.info("EncrytedText [{}]", encText);
 
