@@ -86,6 +86,13 @@
       <artifactId>javase</artifactId>
       <version>3.4.1</version>
     </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.jboss.aerogear/aerogear-otp-java -->
+    <dependency>
+      <groupId>org.jboss.aerogear</groupId>
+      <artifactId>aerogear-otp-java</artifactId>
+      <version>1.0.0</version>
+    </dependency>
   </dependencies>
 
   <build>
