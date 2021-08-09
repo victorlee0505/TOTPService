@@ -8,4 +8,6 @@ public class TotpConstant {
     public static final String CIPHER_SPEC = CIPHER_ALGO + "/CBC/PKCS5Padding";
 
     public static final int KEY_SIZE = 256;
+
+    public static final int TOTP_DEFAULT_TIME_STEP = 30;
 }
